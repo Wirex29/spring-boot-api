@@ -5,34 +5,39 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import java.util.Collection;
+import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Builder
+@Table(name = "student")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
-public class User {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    private String first_name;
+    private String full_name;
 
-    private String initials;
+    private String sex;
 
-    private String last_name;
+    private String phone_number;
+
+    private LocalDate date_of_birth;
 
     private String email;
 
-    private String password;
+    private String graduated_at;
 
-    private String username;
+    private Integer year_of_graduation;
 
-    private boolean is_active;
+    private String major;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Role> roles;
+    private Float gpa;
+
+    @OneToMany(mappedBy = "student")
+    private Set<Enrollment> enrollments;
 }
