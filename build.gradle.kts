@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
     java
     application
@@ -57,12 +55,12 @@ tasks.withType<Test> {
 
 }
 
-tasks.withType<Jar> {
-    manifest{
-        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
-    }
-}
-
-tasks.withType<BootJar> {
-    launchScript()
-}
+//tasks.withType<Jar> {
+//    manifest{
+//        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
+//    }
+//}
+//
+//tasks.withType<BootJar> {
+//    launchScript()
+//}
