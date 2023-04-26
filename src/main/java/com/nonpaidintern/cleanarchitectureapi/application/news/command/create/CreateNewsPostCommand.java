@@ -17,15 +17,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateNewsPostCommand implements Command {
     private String title;
-    private UUID poster;
+    private UserId poster;
     private String image_uri;
     private JsonNode body;
     private Status status;
@@ -45,11 +43,11 @@ public class CreateNewsPostCommand implements Command {
         @Override
         public void handle(CreateNewsPostCommand command) {
             News news = new News();
-            news.setBody(new NewsBody(command.getBody()));
-            news.setTitle(command.getTitle());
-            news.setStatus(command.getStatus());
-            news.setPoster(new UserId(command.getPoster()));
-            news.setImageUri(command.getImage_uri());
+            news.setBody(new NewsBody(command.body));
+            news.setTitle(command.title);
+            news.setStatus(command.status);
+            news.setPoster(command.poster);
+            news.setImageUri(command.image_uri);
             news.setCreatedAt(dateTimeProvider.timeNow());
 
             newsService.save(new CreateNewsPostDTO(news));

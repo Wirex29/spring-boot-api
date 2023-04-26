@@ -26,33 +26,33 @@ public class Course {
 
     private String title;
 
-    private String slug_title;
+    private String slugTitle;
 
     @ManyToOne
     private User poster;
 
-    private String image_uri;
+    private String imageUri;
 
     private String location;
 
-    private BigDecimal course_tuition;
+    private BigDecimal courseTuition;
 
-    private String course_duration;
+    private String courseDuration;
 
-    private String class_size;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "M/d/yy", "dd/MM/yyyy", "yyyy/MM/dd" })
-    private OffsetDateTime created_at;
+    private String classSize;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "M/d/yy", "dd/MM/yyyy", "yyyy/MM/dd" })
-    private OffsetDateTime expired_at;
-
-    private boolean is_expired;
+    private OffsetDateTime createdAt;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "M/d/yy", "dd/MM/yyyy", "yyyy/MM/dd" })
-    private OffsetDateTime first_day_of_class;
+    private OffsetDateTime expiredAt;
 
-    private String Schedule;
+    private String status;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "M/d/yy", "dd/MM/yyyy", "yyyy/MM/dd" })
+    private OffsetDateTime firstDayOfClass;
+
+    private String schedule;
 
     @Embedded
     @AttributeOverrides({

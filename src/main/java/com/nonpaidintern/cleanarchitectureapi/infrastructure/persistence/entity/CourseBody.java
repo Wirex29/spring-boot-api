@@ -1,5 +1,6 @@
 package com.nonpaidintern.cleanarchitectureapi.infrastructure.persistence.entity;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -16,5 +17,5 @@ public class CourseBody {
 
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
-    private String body;
+    private JsonNode body;
 }

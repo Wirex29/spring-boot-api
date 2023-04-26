@@ -10,6 +10,7 @@ import com.nonpaidintern.cleanarchitectureapi.infrastructure.persistence.reposit
 import com.nonpaidintern.cleanarchitectureapi.infrastructure.persistence.repository.RecruitmentRepository;
 import com.nonpaidintern.cleanarchitectureapi.infrastructure.persistence.repository.TechnologyRepository;
 import com.nonpaidintern.cleanarchitectureapi.infrastructure.persistence.repository.UserRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
