@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Data
 @Builder
@@ -20,7 +20,7 @@ public class CreateTechnologyEntryCommand implements Command {
 
     private String name;
 
-    @Component
+    @Service
     static class CreateTechnologyEntryHandler implements CommandHandler<CreateTechnologyEntryCommand> {
 
         private final TechnologyService technologyService;
@@ -32,7 +32,7 @@ public class CreateTechnologyEntryCommand implements Command {
 
         @Override
         public void handle(CreateTechnologyEntryCommand command) {
-            Technology technology = new Technology(command.getName());
+            Technology technology = new Technology(command.name);
 
             technologyService.save(new CreateTechnologyEntryDTO(technology));
         }

@@ -25,6 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+src/main/java/com/nonpaidintern/cleanarchitectureapi/infrastructure/persistence/PersistenceConfiguration.java
 
 ### NetBeans ###
 /nbproject/private/

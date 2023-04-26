@@ -32,6 +32,7 @@ dependencies {
     implementation("io.hypersistence:hypersistence-utils-hibernate-60:3.2.0")
     implementation("org.springframework.security:spring-security-crypto:6.0.2")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     // Compile Only
     compileOnly("org.projectlombok:lombok")
@@ -48,6 +49,7 @@ dependencies {
 
     // Test Implementation
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
 }
 
 tasks.withType<Test> {

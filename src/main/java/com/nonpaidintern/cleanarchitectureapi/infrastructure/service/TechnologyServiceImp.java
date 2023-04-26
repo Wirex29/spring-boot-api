@@ -27,6 +27,8 @@ public class TechnologyServiceImp implements TechnologyService {
         Technology technology = Technology.builder()
                 .name(dto.technology().getName())
                 .build();
+
+        technologyRepository.save(technology);
     }
 
     @Override
