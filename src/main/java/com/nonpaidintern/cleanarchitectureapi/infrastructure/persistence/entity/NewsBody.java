@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
@@ -13,9 +14,10 @@ import org.hibernate.annotations.Type;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
 public class NewsBody {
 
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
-    private JsonNode body;
+    private JsonNode content;
 }

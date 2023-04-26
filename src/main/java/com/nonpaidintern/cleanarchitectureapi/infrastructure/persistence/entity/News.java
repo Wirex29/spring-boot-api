@@ -39,7 +39,7 @@ public class News {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "body", column = @Column( name = "body", table = "news_body", columnDefinition = "jsonb"))
+            @AttributeOverride(name = "content", column = @Column( name = "content", table = "news_body", columnDefinition = "jsonb"))
     })
     private NewsBody body;
 

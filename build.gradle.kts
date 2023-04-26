@@ -29,6 +29,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
     implementation("org.springframework.boot:spring-boot-starter-validation:3.0.4")
     implementation("io.hypersistence:hypersistence-utils-hibernate-60:3.2.0")
+    implementation("org.springframework.security:spring-security-crypto:6.0.2")
 
     // Compile Only
     compileOnly("org.projectlombok:lombok")

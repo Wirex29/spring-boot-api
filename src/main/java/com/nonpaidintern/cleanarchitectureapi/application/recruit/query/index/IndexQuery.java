@@ -18,12 +18,12 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IndexQuery implements Request<Page<IndexQueryDTO>> {
-    private Integer page_number = 1;
+    private Integer page_number;
     private String key;
     private String technology;
     private String job_position;
     private String location;
-    private Integer per_page = 6;
+    private Integer per_page;
 
     @Component
     static class IndexQueryHandler implements RequestHandler<IndexQuery, Page<IndexQueryDTO>> {
@@ -37,9 +37,16 @@ public class IndexQuery implements Request<Page<IndexQueryDTO>> {
         @Override
         public Page<IndexQueryDTO> handle(IndexQuery query) {
 
-            PageRequest pageRequest = PageRequest.of(query.getPage_number() - 1, query.getPer_page());
+            int page = query.page_number > 0 ? query.page_number - 1 : 0;
+            int perPage = query.per_page > 0 ? query.per_page : 6;
 
-            return recruitmentService.fetchPaginated(pageRequest, query.getKey(), query.getTechnology(), query.getJob_position(), query.getLocation());
+            PageRequest pageRequest = PageRequest.of(page, perPage);
+
+            return recruitmentService.fetchPaginated(pageRequest,
+                    query.getKey(),
+                    query.getTechnology(),
+                    query.getJob_position(),
+                    query.getLocation());
 
         }
     }

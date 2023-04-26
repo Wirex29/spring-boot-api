@@ -1,7 +1,7 @@
 package com.nonpaidintern.cleanarchitectureapi.webapi.controller;
 
 
-import com.nonpaidintern.cleanarchitectureapi.application.authentication.common.AuthenticationResult;
+import com.nonpaidintern.cleanarchitectureapi.application.authentication.common.GenericAuthenticationResponse;
 import com.nonpaidintern.cleanarchitectureapi.application.authentication.query.login.LoginQuery;
 import io.jkratz.mediator.core.Mediator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +25,16 @@ public class AuthenticationController {
     }
 
     @PostMapping(path = "/login")
-    public CompletableFuture<ResponseEntity<AuthenticationResult>> login(@ModelAttribute LoginQuery request) {
+    public CompletableFuture<ResponseEntity<GenericAuthenticationResponse>> login(@ModelAttribute LoginQuery request) {
 
-        CompletableFuture<AuthenticationResult> future = CompletableFuture.supplyAsync(() ->
-                                                                                    this.mediator.dispatch(request));
+        try {
+            return CompletableFuture.supplyAsync(() ->
+                    this.mediator.dispatch(request)).thenApply(ResponseEntity::ok);
+        } catch (Exception e) {
+            return CompletableFuture.completedFuture(ResponseEntity.badRequest().body(new GenericAuthenticationResponse(400, e.getMessage())));
+        }
 
-        return future.thenApply(ResponseEntity::ok);
     }
 
-//    @PostMapping(path = "/register")
-//    public CompletableFuture<ResponseEntity<AuthenticationResult>> register(@ModelAttribute RegisterCommand command) {
-//        CompletableFuture<AuthenticationResult> future = CompletableFuture.supplyAsync(() ->
-//                                                                                    command.execute(pipeline));
-//
-//        return future.thenApply(ResponseEntity::ok);
-//    }
 
 }

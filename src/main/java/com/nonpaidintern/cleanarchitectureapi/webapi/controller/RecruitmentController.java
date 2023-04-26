@@ -1,8 +1,6 @@
 package com.nonpaidintern.cleanarchitectureapi.webapi.controller;
 
 
-import com.nonpaidintern.cleanarchitectureapi.application.recruit.command.create.CreateRecruitmentCommand;
-import com.nonpaidintern.cleanarchitectureapi.application.recruit.common.CreateRecruitmentResult;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.common.IndexQueryDTO;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.query.index.IndexQuery;
 import io.jkratz.mediator.core.Mediator;

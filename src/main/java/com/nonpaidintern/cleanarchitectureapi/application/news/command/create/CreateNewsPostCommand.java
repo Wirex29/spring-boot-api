@@ -52,8 +52,6 @@ public class CreateNewsPostCommand implements Command {
             news.setImageUri(command.getImage_uri());
             news.setCreatedAt(dateTimeProvider.timeNow());
 
-
-
             newsService.save(new CreateNewsPostDTO(news));
         }
     }

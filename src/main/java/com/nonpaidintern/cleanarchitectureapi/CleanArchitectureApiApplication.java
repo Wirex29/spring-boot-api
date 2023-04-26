@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class CleanArchitectureApiApplication {
 
     public static void main(String[] args) {
-        System.out.println(org.hibernate.Version.getVersionString());
+//        System.out.println(org.hibernate.Version.getVersionString());
         SpringApplication.run(CleanArchitectureApiApplication.class, args);
     }
 

@@ -1,8 +1,22 @@
 package com.nonpaidintern.cleanarchitectureapi.domain.user;
 
 import com.nonpaidintern.cleanarchitectureapi.domain.common.BaseEntity;
+import com.nonpaidintern.cleanarchitectureapi.domain.validator.RoleValidator;
+import com.nonpaidintern.cleanarchitectureapi.domain.valueobject.RoleId;
 
-import java.util.UUID;
+public class Role extends BaseEntity<RoleId> {
 
-public class Role extends BaseEntity<UUID> {
+    private String name;
+
+    public Role() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+
+        if (RoleValidator.validateRoleName(name)) this.name = name;
+
+    }
 }
