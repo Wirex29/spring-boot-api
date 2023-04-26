@@ -1,19 +1,15 @@
 package com.nonpaidintern.cleanarchitectureapi.application.technology.command.create;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.nonpaidintern.cleanarchitectureapi.application.common.service.TechnologyService;
 import com.nonpaidintern.cleanarchitectureapi.application.technology.common.CreateTechnologyEntryDTO;
 import com.nonpaidintern.cleanarchitectureapi.domain.recruit.Technology;
-import io.hypersistence.utils.hibernate.type.json.internal.JacksonUtil;
 import io.jkratz.mediator.core.Command;
 import io.jkratz.mediator.core.CommandHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.stereotype.Component;
 
 @Data

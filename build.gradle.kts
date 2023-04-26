@@ -25,11 +25,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.jkratz.springmediatr:spring-mediatr:1.1-RELEASE")
-    implementation("org.json:json:20230227")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
     implementation("org.springframework.boot:spring-boot-starter-validation:3.0.4")
     implementation("io.hypersistence:hypersistence-utils-hibernate-60:3.2.0")
     implementation("org.springframework.security:spring-security-crypto:6.0.2")
+    implementation("org.springframework.boot:spring-boot-configuration-processor")
 
     // Compile Only
     compileOnly("org.projectlombok:lombok")

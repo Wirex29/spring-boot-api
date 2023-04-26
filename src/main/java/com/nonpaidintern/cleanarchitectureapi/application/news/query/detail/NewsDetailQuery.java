@@ -32,9 +32,7 @@ public class NewsDetailQuery implements Request<NewsDetailDTO> {
         @Override
         public NewsDetailDTO handle(NewsDetailQuery query) {
 
-            var thing = newsService.fetchBySlugTitle(query.slugTitle);
-
-            return thing;
+            return newsService.fetchBySlugTitle(query.slugTitle);
         }
     }
 
