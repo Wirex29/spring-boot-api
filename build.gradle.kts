@@ -16,6 +16,7 @@ configurations {
 }
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 
@@ -23,7 +24,7 @@ dependencies {
     // Implementation
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("net.sizovs:pipelinr:0.8")
+    implementation("io.jkratz.springmediatr:spring-mediatr:1.1-RELEASE")
 //    implementation("io.jkratz.springmediatr:spring-mediatr:1.1-RELEASE")
 
     // Compile Only

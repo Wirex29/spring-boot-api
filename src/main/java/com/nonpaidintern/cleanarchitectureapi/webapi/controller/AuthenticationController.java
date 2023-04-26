@@ -1,9 +1,9 @@
 package com.nonpaidintern.cleanarchitectureapi.webapi.controller;
 
-import an.awesome.pipelinr.Pipeline;
-import com.nonpaidintern.cleanarchitectureapi.application.authentication.AuthenticationResponse;
-import com.nonpaidintern.cleanarchitectureapi.application.authentication.command.register.RegisterCommand;
-import com.nonpaidintern.cleanarchitectureapi.application.authentication.query.login.LoginRequest;
+
+import com.nonpaidintern.cleanarchitectureapi.application.authentication.common.AuthenticationResult;
+import com.nonpaidintern.cleanarchitectureapi.application.authentication.query.login.LoginQuery;
+import io.jkratz.mediator.core.Mediator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,28 +17,28 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping(path = "/api/v1/auth")
 public class AuthenticationController {
 
-    private final Pipeline pipeline;
+    private final Mediator mediator;
 
     @Autowired
-    public AuthenticationController(Pipeline pipeline) {
-        this.pipeline = pipeline;
+    public AuthenticationController(Mediator mediator) {
+        this.mediator = mediator;
     }
 
     @PostMapping(path = "/login")
-    public CompletableFuture<ResponseEntity<AuthenticationResponse>> login(@ModelAttribute LoginRequest request) {
+    public CompletableFuture<ResponseEntity<AuthenticationResult>> login(@ModelAttribute LoginQuery request) {
 
-        CompletableFuture<AuthenticationResponse> future = CompletableFuture.supplyAsync(() ->
-                                                                                    request.execute(pipeline));
-
-        return future.thenApply(ResponseEntity::ok);
-    }
-
-    @PostMapping(path = "/register")
-    public CompletableFuture<ResponseEntity<AuthenticationResponse>> register(@ModelAttribute RegisterCommand command) {
-        CompletableFuture<AuthenticationResponse> future = CompletableFuture.supplyAsync(() ->
-                                                                                    command.execute(pipeline));
+        CompletableFuture<AuthenticationResult> future = CompletableFuture.supplyAsync(() ->
+                                                                                    this.mediator.dispatch(request));
 
         return future.thenApply(ResponseEntity::ok);
     }
+
+//    @PostMapping(path = "/register")
+//    public CompletableFuture<ResponseEntity<AuthenticationResult>> register(@ModelAttribute RegisterCommand command) {
+//        CompletableFuture<AuthenticationResult> future = CompletableFuture.supplyAsync(() ->
+//                                                                                    command.execute(pipeline));
+//
+//        return future.thenApply(ResponseEntity::ok);
+//    }
 
 }
