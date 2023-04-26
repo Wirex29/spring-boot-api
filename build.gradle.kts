@@ -55,10 +55,24 @@ tasks.withType<Test> {
 
 }
 
-tasks.withType<Jar> {
-    manifest{
-        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
+//
+//tasks.withType<Jar> {
+//    manifest{
+//        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
+//    }
+//}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    archiveClassifier.set("boot")
+    mainClass.set("com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication")
+    manifest {
+        attributes("Start-Class" to "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication")
     }
+    launchScript()
+}
+
+tasks.named<Jar>("jar") {
+    archiveClassifier.set("")
 }
 //
 //tasks.withType<BootJar> {
