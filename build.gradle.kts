@@ -23,6 +23,8 @@ repositories {
 
 dependencies {
     // Implementation
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
+    implementation("org.springframework.boot:spring-boot:3.0.5")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.jkratz.springmediatr:spring-mediatr:1.1-RELEASE")
