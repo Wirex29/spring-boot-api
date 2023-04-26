@@ -56,7 +56,7 @@ public class Course {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "body", column = @Column( name = "body", table = "course_body"))
+            @AttributeOverride(name = "body", column = @Column( name = "body", table = "course_body", columnDefinition = "jsonb"))
     })
     private CourseBody body;
 

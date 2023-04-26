@@ -10,6 +10,6 @@ public class MockController {
 
     @GetMapping(path = "hello")
     public String hello() {
-        return "Hello Cunny";
+        return "Hello Funny";
     }
 }

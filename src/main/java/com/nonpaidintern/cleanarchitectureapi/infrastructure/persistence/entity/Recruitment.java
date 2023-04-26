@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(indexes = @Index(columnList = "id, slug_title"), name = "recruitment")
+@Table(indexes = @Index(columnList = "id, slugTitle"), name = "recruitment")
 @SecondaryTable(name = "recruitment_body", pkJoinColumns = @PrimaryKeyJoinColumn(name = "recruitment_id"))
 public class Recruitment {
     @Id
@@ -25,21 +25,21 @@ public class Recruitment {
 
     private String title;
 
-    private String slug_title;
+    private String slugTitle;
 
-    private String image_uri;
+    private String imageUri;
 
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User poster;
 
-    private String work_type;
+    private String workType;
 
-    private String work_location;
+    private String workLocation;
 
-    private BigDecimal approved_salary;
+    private BigDecimal incomeProposal;
 
-    private String experience_requirement;
+    private String experienceRequirement;
 
     @ManyToMany
     @JoinTable(
@@ -49,7 +49,7 @@ public class Recruitment {
             inverseJoinColumns =
                 @JoinColumn(name = "skill_id")
     )
-    private Set<Skill> skills_requirement;
+    private Set<Technology> skillRequirements;
 
     @ManyToMany
     @JoinTable(
@@ -63,17 +63,17 @@ public class Recruitment {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "body", column = @Column( name = "body", table = "recruitment_body"))
+            @AttributeOverride(name = "body", column = @Column( name = "body", table = "recruitment_body", columnDefinition = "jsonb"))
     })
     private RecruitmentBody body;
 
     private String position;
 
-    private OffsetDateTime created_at;
+    private OffsetDateTime createdAt;
 
-    private OffsetDateTime expired_at;
+    private OffsetDateTime expiredAt;
     
-    private boolean is_expired;
+    private String status;
 
 
     public List<String> getTags() {
@@ -81,7 +81,7 @@ public class Recruitment {
         List<String> list = new ArrayList<>();
 
         // EXTRACT WORK TYPE FROM STRING THEN APPEND TO TAGS LIST
-        String workType = this.work_type;
+        String workType = this.workType;
 
         int from = workType.indexOf(',');
         int to = workType.indexOf(',', from + 1);
@@ -96,7 +96,7 @@ public class Recruitment {
 
         // ADD SKILL REQUIREMENT INTO TAGS LIST
         for (var skill :
-                this.skills_requirement) {
+                this.skillRequirements) {
             list.add(skill.getName());
         }
 

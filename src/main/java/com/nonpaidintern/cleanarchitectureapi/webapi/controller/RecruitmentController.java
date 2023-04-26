@@ -1,20 +1,21 @@
 package com.nonpaidintern.cleanarchitectureapi.webapi.controller;
 
 
-import com.nonpaidintern.cleanarchitectureapi.application.image.command.UploadImageCommand;
-import com.nonpaidintern.cleanarchitectureapi.application.image.command.UploadImageDto;
-import com.nonpaidintern.cleanarchitectureapi.application.recruit.query.index.RecruitIndexDto;
+import com.nonpaidintern.cleanarchitectureapi.application.recruit.common.IndexQueryDTO;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.query.index.IndexQuery;
 import io.jkratz.mediator.core.Mediator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping("/api/v1/recruit")
+@RequestMapping("/api/v1/recruitment")
 public class RecruitmentController {
 
     private final Mediator mediator;
@@ -27,14 +28,10 @@ public class RecruitmentController {
     @GetMapping(path = "",
                 produces = {"application/json"}
     )
-    public CompletableFuture<ResponseEntity<Page<RecruitIndexDto>>> index(@ModelAttribute IndexQuery query) {
+    public CompletableFuture<ResponseEntity<Page<IndexQueryDTO>>> index(@ModelAttribute IndexQuery query) {
 
-        var thing = CompletableFuture.supplyAsync(() -> this.mediator.dispatch(query));
-
-        return thing.thenApply(ResponseEntity::ok);
+        return CompletableFuture.supplyAsync(() -> this.mediator.dispatch(query)).thenApply(ResponseEntity::ok);
     }
-
-
 
 
 }
