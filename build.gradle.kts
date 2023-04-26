@@ -57,7 +57,7 @@ tasks.withType<Test> {
 
 tasks.withType<Jar> {
     manifest{
-        attributes["Start-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
+        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
     }
 }
 //
