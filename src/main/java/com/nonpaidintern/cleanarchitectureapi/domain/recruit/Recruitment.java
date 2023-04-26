@@ -127,4 +127,60 @@ public class Recruitment extends BaseEntity<RecruitmentId> {
     public Status getStatus() {
         return status;
     }
+
+    public void setImgUri(String imgUri) {
+        this.imgUri = imgUri;
+    }
+
+    public void setWorkType(String workType) {
+        this.workType = workType;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPoster(UserId poster) {
+        this.poster = poster;
+    }
+
+    public void setWorkLocation(String workLocation) {
+        this.workLocation = workLocation;
+    }
+
+    public void setIncomeProposal(BigDecimal incomeProposal) {
+        this.incomeProposal = incomeProposal;
+    }
+
+    public void setExperienceRequirement(String experienceRequirement) {
+        this.experienceRequirement = experienceRequirement;
+    }
+
+    public void setSkillsRequirement(Set<TechnologyId> skillsRequirement) {
+        this.skillsRequirement = skillsRequirement;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setBenefits(Set<BenefitId> benefits) {
+        this.benefits = benefits;
+    }
+
+    public void setBody(RecruitmentInfo body) {
+        this.body = body;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setExpireAt(OffsetDateTime expireAt) {
+        this.expireAt = expireAt;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

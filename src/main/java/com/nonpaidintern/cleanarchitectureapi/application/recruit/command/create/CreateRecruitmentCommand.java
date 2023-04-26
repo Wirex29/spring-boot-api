@@ -1,6 +1,5 @@
 package com.nonpaidintern.cleanarchitectureapi.application.recruit.command.create;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nonpaidintern.cleanarchitectureapi.application.common.service.DateTimeProvider;
 import com.nonpaidintern.cleanarchitectureapi.application.common.service.RecruitmentService;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.common.CreateRecruitmentDTO;
@@ -65,24 +64,21 @@ public class CreateRecruitmentCommand implements Command {
 
 //            UserId poster = new UserId(command.getPoster())
 
-            Recruitment recruitment = new Recruitment(null,
-                    command.getImg_uri(),
-                    command.getWork_type(),
-                    command.getTitle(),
-                    command.getPoster(),
-                    command.getWork_location(),
-                    command.getIncome_proposal(),
-                    command.getExperience_requirement(),
-                    command.getSkills_requirement().stream().map(TechnologyId::new).collect(
-                            Collectors.toSet()),
-                    command.getPosition(),
-                    command.getBenefits().stream().map(BenefitId::new).collect(Collectors.toSet()),
-                    new RecruitmentInfo(command.getContent()),
-                    dateTimeProvider.timeNow(),
-                    command.getExpire_at(),
-                    command.getStatus()
-            );
-
+            Recruitment recruitment = new Recruitment();
+            recruitment.setImgUri(command.img_uri);
+            recruitment.setWorkType(command.work_type);
+            recruitment.setTitle(command.title);
+            recruitment.setPoster(command.poster);
+            recruitment.setWorkLocation(command.work_location);
+            recruitment.setIncomeProposal(command.income_proposal);
+            recruitment.setExperienceRequirement(command.experience_requirement);
+            recruitment.setSkillsRequirement(command.skills_requirement.stream().map(TechnologyId::new).collect(
+                    Collectors.toSet()));
+            recruitment.setPosition(command.position);
+            recruitment.setBenefits(command.benefits.stream().map(BenefitId::new).collect(Collectors.toSet()));
+            recruitment.setBody(new RecruitmentInfo(command.content));
+            recruitment.setExpireAt(command.expire_at);
+            recruitment.setStatus(command.status);
 
 
             recruitmentService.save(new CreateRecruitmentDTO(recruitment));
