@@ -6,9 +6,7 @@ import com.nonpaidintern.cleanarchitectureapi.application.authentication.command
 import com.nonpaidintern.cleanarchitectureapi.application.authentication.common.GenericAuthenticationResponse;
 import com.nonpaidintern.cleanarchitectureapi.application.common.contract.ActionResponse;
 import com.nonpaidintern.cleanarchitectureapi.application.news.command.create.CreateNewsPostCommand;
-import com.nonpaidintern.cleanarchitectureapi.application.news.common.CreateNewsPostResult;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.command.create.CreateRecruitmentCommand;
-import com.nonpaidintern.cleanarchitectureapi.application.recruit.common.CreateRecruitmentResult;
 import com.nonpaidintern.cleanarchitectureapi.application.technology.command.create.CreateTechnologyEntryCommand;
 import io.jkratz.mediator.core.Mediator;
 import org.springframework.beans.factory.annotation.Autowired;
