@@ -22,17 +22,22 @@ public class ImageController {
         this.mediator = mediator;
     }
 
-    @GetMapping(path = "{fileName}")
+    @GetMapping(path = "{fileName}", produces = "image/png")
     public CompletableFuture<ResponseEntity<byte[]>> downloadImage(@ModelAttribute ImageQuery query) {
 
-        return CompletableFuture.supplyAsync(() -> mediator.dispatch(query))
-                                .thenApply((value) ->
-                                            ResponseEntity.ok()
-                                                          .contentType(MediaType.valueOf("image/png"))
-                                                          .body(value));
+        try {
+            return CompletableFuture.supplyAsync(() -> mediator.dispatch(query))
+                    .thenApply((value) ->
+                            ResponseEntity.ok()
+                                    .contentType(MediaType.valueOf("image/png"))
+                                    .body(value));
+        } catch (RuntimeException e) {
+            return CompletableFuture.completedFuture(ResponseEntity.notFound().build());
+        }
+
     }
 
-    @PostMapping(path = "upload-image", consumes = "multipart/form-data")
+    @PostMapping(path = "upload-image", consumes = "multipart/form-data", produces = "application/json")
     public CompletableFuture<ResponseEntity<UploadImageDto>> uploadImage(@ModelAttribute UploadImageCommand command) {
 
         return CompletableFuture.supplyAsync(() -> mediator.dispatch(command)).thenApply(ResponseEntity::ok);

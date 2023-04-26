@@ -1,15 +1,13 @@
 package com.nonpaidintern.cleanarchitectureapi.domain.recruit;
 
 import com.nonpaidintern.cleanarchitectureapi.domain.common.BaseEntity;
+import com.nonpaidintern.cleanarchitectureapi.domain.valueobject.TechnologyId;
 
-import java.util.UUID;
-
-public class Skill extends BaseEntity {
+public class Technology extends BaseEntity<TechnologyId> {
 
     private String name;
 
-    public Skill(UUID id, String name) {
-        this.id = id;
+    public Technology(String name) {
         this.name = name;
     }
 

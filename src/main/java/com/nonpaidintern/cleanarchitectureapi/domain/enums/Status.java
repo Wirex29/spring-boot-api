@@ -1,4 +1,4 @@
-package com.nonpaidintern.cleanarchitectureapi.domain.common;
+package com.nonpaidintern.cleanarchitectureapi.domain.enums;
 
 public enum Status {
     ACTIVE,

@@ -1,16 +1,14 @@
 package com.nonpaidintern.cleanarchitectureapi.domain.common;
 
-import java.util.UUID;
+public abstract class BaseEntity<T> {
 
-public abstract class BaseEntity {
+    protected T id;
 
-    protected UUID id;
-
-    public UUID getId() {
+    public T getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(T id) {
         this.id = id;
     }
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class AuthenticationResult {
 
-    private Integer status;
+    private Integer statusCode;
     private String content;
 }
