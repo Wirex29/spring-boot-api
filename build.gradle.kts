@@ -55,11 +55,11 @@ tasks.withType<Test> {
 
 }
 
-//tasks.withType<Jar> {
-//    manifest{
-//        attributes["Main-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
-//    }
-//}
+tasks.withType<Jar> {
+    manifest{
+        attributes["Start-Class"] = "com.nonpaidintern.cleanarchitectureapi.CleanArchitectureApiApplication"
+    }
+}
 //
 //tasks.withType<BootJar> {
 //    launchScript()
