@@ -4,6 +4,7 @@ import com.nonpaidintern.cleanarchitectureapi.application.image.command.UploadIm
 import com.nonpaidintern.cleanarchitectureapi.application.image.command.UploadImageDto;
 import com.nonpaidintern.cleanarchitectureapi.application.image.query.ImageQuery;
 import io.jkratz.mediator.core.Mediator;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,9 +39,9 @@ public class ImageController {
     }
 
     @PostMapping(path = "upload-image", consumes = "multipart/form-data", produces = "application/json")
-    public CompletableFuture<ResponseEntity<UploadImageDto>> uploadImage(@ModelAttribute UploadImageCommand command, @RequestHeader String host) {
+    public CompletableFuture<ResponseEntity<UploadImageDto>> uploadImage(@ModelAttribute UploadImageCommand command, HttpServletRequest request) {
 
-        command.setHost(host);
+        command.setHost(request.getHeader("host"));
 
         return CompletableFuture.supplyAsync(() -> mediator.dispatch(command)).thenApply(ResponseEntity::ok);
     }

@@ -45,7 +45,7 @@ public class UploadImageCommand implements Request<UploadImageDto> {
             String uri;
 
             if (command.host != null && !command.host.isBlank()) {
-                uri = command.host + filePath;
+                uri = command.host + "/api/v1/image/" + filePath;
             } else {
                 try {
 
