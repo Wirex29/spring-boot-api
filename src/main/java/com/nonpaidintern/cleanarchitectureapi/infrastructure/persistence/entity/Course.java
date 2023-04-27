@@ -15,7 +15,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "course", indexes = @Index(columnList = "id, slug_title"))
+@Table(name = "course", indexes = @Index(columnList = "id, slugTitle"))
 @SecondaryTable(name = "course_body", pkJoinColumns = @PrimaryKeyJoinColumn(name = "course_id"))
 
 public class Course {

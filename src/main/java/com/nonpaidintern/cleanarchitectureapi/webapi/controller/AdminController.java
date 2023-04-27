@@ -5,6 +5,7 @@ import com.nonpaidintern.cleanarchitectureapi.application.authentication.command
 import com.nonpaidintern.cleanarchitectureapi.application.authentication.command.role.CreateRoleCommand;
 import com.nonpaidintern.cleanarchitectureapi.application.authentication.common.GenericAuthenticationResponse;
 import com.nonpaidintern.cleanarchitectureapi.application.common.contract.ActionResponse;
+import com.nonpaidintern.cleanarchitectureapi.application.course.command.create.CreateCoursePostCommand;
 import com.nonpaidintern.cleanarchitectureapi.application.news.command.create.CreateNewsPostCommand;
 import com.nonpaidintern.cleanarchitectureapi.application.recruit.command.create.CreateRecruitmentCommand;
 import com.nonpaidintern.cleanarchitectureapi.application.technology.command.create.CreateTechnologyEntryCommand;
@@ -88,6 +89,16 @@ public class AdminController {
 
         return CompletableFuture.completedFuture(ResponseEntity.ok()
                 .body(new ActionResponse(HttpStatus.OK, mapper.valueToTree(command))));
+    }
+
+    @PostMapping(path = "/create/course", consumes = "application/json")
+    public CompletableFuture<ResponseEntity<ActionResponse>> createCoursePost(@RequestBody CreateCoursePostCommand command) {
+
+        this.mediator.dispatch(command);
+
+        return CompletableFuture.completedFuture(ResponseEntity.ok()
+                .body(new ActionResponse(HttpStatus.OK, mapper.valueToTree(command)))
+        );
     }
 
     @PostMapping(path = "/create/technology", consumes = "application/json")
