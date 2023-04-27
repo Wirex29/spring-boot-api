@@ -38,7 +38,9 @@ public class ImageController {
     }
 
     @PostMapping(path = "upload-image", consumes = "multipart/form-data", produces = "application/json")
-    public CompletableFuture<ResponseEntity<UploadImageDto>> uploadImage(@ModelAttribute UploadImageCommand command) {
+    public CompletableFuture<ResponseEntity<UploadImageDto>> uploadImage(@ModelAttribute UploadImageCommand command, @RequestHeader String host) {
+
+        command.setHost(host);
 
         return CompletableFuture.supplyAsync(() -> mediator.dispatch(command)).thenApply(ResponseEntity::ok);
     }

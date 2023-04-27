@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.cfg.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -22,6 +21,7 @@ import java.net.UnknownHostException;
 @AllArgsConstructor
 public class UploadImageCommand implements Request<UploadImageDto> {
 
+    private String host;
     private MultipartFile file;
 
     @Component
@@ -38,20 +38,38 @@ public class UploadImageCommand implements Request<UploadImageDto> {
         }
 
         @Override
-        public UploadImageDto handle(UploadImageCommand uploadImageCommand) {
+        public UploadImageDto handle(UploadImageCommand command) {
 
             String uploadDest = "img/";
-            String filePath = fileUploadUtil.save(uploadImageCommand.getFile(), uploadDest);
+            String filePath = fileUploadUtil.save(command.file, uploadDest);
+            String uri;
 
-            try {
+            if (command.host != null && !command.host.isBlank()) {
+                uri = command.host + filePath;
+            } else {
+                try {
 
-                String uri = InetAddress.getLocalHost().getHostAddress() + ":" + port + "/api/v1/image/" + filePath;
+                    uri = InetAddress.getLocalHost().getHostAddress() + ":" + port + "/api/v1/image/" + filePath;
 
-                return new UploadImageDto(uri);
+                    return new UploadImageDto(uri);
 
-            } catch (UnknownHostException e) {
-                throw new RuntimeException(e);
+                } catch (UnknownHostException e) {
+                    throw new RuntimeException(e);
+                }
             }
+
+
+            return new UploadImageDto(uri);
+
+//            try {
+//
+//                String uri = InetAddress.getLocalHost().getHostAddress() + ":" + port + "/api/v1/image/" + filePath;
+//
+//                return new UploadImageDto(uri);
+//
+//            } catch (UnknownHostException e) {
+//                throw new RuntimeException(e);
+//            }
 
         }
     }
